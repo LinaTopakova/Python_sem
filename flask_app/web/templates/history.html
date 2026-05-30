@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}История запросов{% endblock %}
+{% block content %}
+<h2>Ваши запросы</h2>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Дата</th>
+      <th>Изображение</th>
+      <th>Категория</th>
+      <th>Ккал</th>
+      <th>Белки</th>
+      <th>Жиры</th>
+      <th>Углеводы</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for p in predictions %}
+    <tr>
+      <td>{{ p.created_at.strftime('%Y-%m-%d %H:%M') }}</td>
+      <td>{{ p.input_data }}</td>
+      <td>{{ p.result.class_name }}</td>
+      <td>{{ p.result.calories }}</td>
+      <td>{{ p.result.protein }}</td>
+      <td>{{ p.result.fat }}</td>
+      <td>{{ p.result.carbs }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
